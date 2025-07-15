@@ -1,0 +1,39 @@
+package hospital_management;
+
+import java.sql.Connection;
+
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+public class view_data {
+	public void view() {
+		try {
+			// step 1 - get connection
+			String cs = "jdbc:mysql://localhost:3306/newdb1";
+			Connection conn = DriverManager.getConnection(cs,"root","Khalu33@");
+			
+			// step 2 - create connection
+			Statement stmt = conn.createStatement();
+			
+			// step 3 - execute query
+			ResultSet rs=stmt.executeQuery("select * from pjk3"); 
+			System.out.println("patient id \t patient name \t location From \t location To ");
+			while(rs.next()) {
+				System.out.println(rs.getString(1)+" \t "+rs.getString(2)+" \t "+rs.getString(3)+"\t"+ rs.getString(4));  
+				
+			}
+			// step 4 - close the connection
+			conn.close();
+		}catch(Exception e) {
+			System.out.println(e);
+		
+		}
+	}
+
+}
+
+
+
+
+
